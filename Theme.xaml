@@ -5,11 +5,11 @@
                     xmlns:ci="http://classisland.tech/schemas/xaml/core"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:classIsland="clr-namespace:ClassIsland;assembly=ClassIsland">
-    
+
     <!-- 自定义图片资源 -->
-    <ImageSource x:Key="CarouselBg">pack://Assets/Images/20201203172607_2b100-removebg-preview.png</ImageSource>
-    <ImageSource x:Key="ScheduleBg">pack://Assets/Images/20221013001851_78bca.thumb.400_0-removebg-preview.png</ImageSource>
-    <ImageSource x:Key="QuoteBg">pack://Assets/Images/61042e9b3e358304d9a915157d65de95_8880773616307186.png</ImageSource>
+    <ImageSource x:Key="CarouselBg">pack://application:,,,/YourPlugin;component/Assets/Images/carousel_bg.png</ImageSource>
+    <ImageSource x:Key="ScheduleBg">pack://application:,,,/YourPlugin;component/Assets/Images/schedule_bg.png</ImageSource>
+    <ImageSource x:Key="QuoteBg">pack://application:,,,/YourPlugin;component/Assets/Images/quote_bg.png</ImageSource>
 
     <ci:SolidColorBrushToColorConverter x:Key="SolidColorBrushToColorConverter"/>
 
@@ -50,8 +50,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ci:ComponentPresenter}">
-                            <Grid Margin="0 4 0 4" x:Name="GridComponentPresenterContainer"
-                                  Style="{StaticResource GridComponentPresenterContainerStyle}">
+                            <Grid Style="{StaticResource GridComponentPresenterContainerStyle}">
                                 <Grid.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform />
@@ -60,26 +59,26 @@
                                         <TranslateTransform Y="-60" />
                                     </TransformGroup>
                                 </Grid.RenderTransform>
-                                
+
                                 <!-- 课程表组件背景图（右侧） -->
                                 <Border CornerRadius="10" Padding="15 0" Background="{DynamicResource MaterialDesignBackground}" 
-                                        Height="40" Opacity="{Binding ViewModel.Settings.Opacity, RelativeSource={RelativeSource AncestorType=classIsland:MainWindow}}">
+                                        Height="60" Opacity="{Binding ViewModel.Settings.Opacity, RelativeSource={RelativeSource AncestorType=classIsland:MainWindow}}">
                                     <Canvas>
-                                        <Image Source="{StaticResource ScheduleBg}" Width="100" Height="40"
+                                        <Image Source="{StaticResource ScheduleBg}" Width="100" Height="60"
                                                Canvas.Right="0" Canvas.Top="0" Opacity="0.7" Stretch="UniformToFill"/>
                                     </Canvas>
                                 </Border>
-                                
+
                                 <!-- 名句一言组件背景图（左侧） -->
-                                <Border CornerRadius="10" Padding="15 0" Height="40">
+                                <Border CornerRadius="10" Padding="15 0" Height="60">
                                     <Canvas>
-                                        <Image Source="{StaticResource QuoteBg}" Width="120" Height="40"
+                                        <Image Source="{StaticResource QuoteBg}" Width="120" Height="60"
                                                Canvas.Left="0" Canvas.Top="0" Opacity="0.8" Stretch="UniformToFill"/>
                                     </Canvas>
                                 </Border>
-                                
+
                                 <!-- 轮播组件背景图（右侧） -->
-                                <Border CornerRadius="10" Padding="15 0" Height="40" BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0.75">
+                                <Border CornerRadius="10" Padding="15 0" Height="60" BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="0.75">
                                     <Canvas>
                                         <Image Source="{StaticResource CarouselBg}" Width="80" Height="80"
                                                Canvas.Right="0" Canvas.Top="-10" Opacity="0.6" Stretch="UniformToFill"/>
@@ -89,9 +88,9 @@
                                                           Color="{Binding BorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}, Converter={StaticResource SolidColorBrushToColorConverter}}"/>
                                     </Border.Effect>
                                 </Border>
-                                
+
                                 <!-- 内容展示层 -->
-                                <Border CornerRadius="10" Padding="15 0" Height="40">
+                                <Border CornerRadius="10" Padding="15 0" Height="60">
                                     <Grid>
                                         <ContentPresenter Content="{Binding Content, RelativeSource={RelativeSource AncestorType=ci:ComponentPresenter}}"/>
                                     </Grid>
